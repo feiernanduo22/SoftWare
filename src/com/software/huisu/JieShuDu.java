@@ -37,6 +37,8 @@ public class JieShuDu {
        print(board);
        //递归尝试填充数组
        recusiveSolveShuDu(board, rowUsed, colUsed, boxUsed, 0, 0);
+
+       print(board);
    }
 
    private static boolean recusiveSolveShuDu(char[][] board, boolean[][] rowUsed, boolean[][] colUsed, boolean[][][] boxUsed, int row, int col){
