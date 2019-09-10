@@ -19,9 +19,9 @@ package com.software.huisu;
  * @data 2019/9/8 7:29
  */
 public class JieShuDu {
-    private static final char NOVSLUE = '.';
-    private static final int STARTVALUE = 1;
-    private static final int ENDVALUE = 9;
+    private static final char NOVSLUE = '.';//表示数独里该位置需填充值
+    private static final int STARTVALUE = 1;//表示可以填充的最小数字
+    private static final int ENDVALUE = 9;//表示可以填充的最大数字
 
    public static void solveShuDu(char[][] board){
        //三个boolean数组表明行、列、3*3格子的数字是否被使用过
