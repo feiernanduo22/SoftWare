@@ -1,9 +1,6 @@
 package com.software.huisu;
 
-/**
- * @auther Yvqanlee
- * @data 2019/9/8 7:29
- */
+
 
 /**
  * 解数独
@@ -17,12 +14,20 @@ package com.software.huisu;
  * 递归直到数独被填充完成
  */
 
+/**
+ * @auther Yvqanlee
+ * @data 2019/9/8 7:29
+ */
 public class JieShuDu {
+    private static final char NOVSLUE = '.';
+    private static final int STARTVALUE = 1;
+    private static final int ENDVALUE = 9;
+
    public static void solveShuDu(char[][] board){
        //三个boolean数组表明行、列、3*3格子的数字是否被使用过
-       boolean rowUsed[][] = new boolean[9][10];
-       boolean colUsed[][] = new boolean[9][10];
-       boolean boxUsed[][][] = new boolean[3][3][10];
+       boolean[][] rowUsed = new boolean[9][10];
+       boolean[][] colUsed = new boolean[9][10];
+       boolean[][][] boxUsed = new boolean[3][3][10];
        //初始化
        for (int row = 0; row < board.length; row++){
            for (int col = 0; col < board[0].length; col++){
@@ -51,9 +56,9 @@ public class JieShuDu {
            }
        }
        //是空则尝试填充，否则跳过继续尝试填充下一个位置
-       if (board[row][col] == '.'){
+       if (board[row][col] == NOVSLUE){
            //尝试填充1~9
-           for (int num = 1; num <= 9; num++){
+           for (int num = STARTVALUE; num <= ENDVALUE; num++){
                //该数字是否使用过
                boolean canUsed = !(rowUsed[row][num] || colUsed[col][num] || boxUsed[row/3][col/3][num]);
                if (canUsed){
