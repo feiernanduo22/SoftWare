@@ -47,8 +47,8 @@ public class GeZiYiDong {
             for (int i=1;i<=num;i++){
                 for (int j=1;j<=num;j++){
                     ARR[i][j] = sc.nextInt();
-                    //给每个点的初始值赋为： -65535
-                    STEP[i][j] = -65535;
+                    //给每个点的初始值赋为： Integer.MIN_VALUE
+                    STEP[i][j] = Integer.MIN_VALUE;
                 }
             }
             A = sc.nextInt();
@@ -59,15 +59,15 @@ public class GeZiYiDong {
             boolean isThrough = false;
             Queue<int[]> queue = new LinkedList<>();
             //将起点放入队列中
-            queue.add(new int[]{C, D});
+            queue.add(new int[]{A, B});
             //给起点的步数置为0
-            STEP[C][D] = 0;
+            STEP[A][B] = 0;
             while (!queue.isEmpty()){
                 int[] arr = queue.poll();
                 int a = arr[0];
                 int b = arr[1];
                 //如果到达终点，则跳出
-                if (a == A && b == B){
+                if (a == C && b == D){
                     isThrough = true;
                     break;
                 }
@@ -77,7 +77,7 @@ public class GeZiYiDong {
                     int x = group[i][0] + a;
                     int y = group[i][1] + b;
                     //判断移动后的点是否在范围内，且该点可以通过（值为0），且该点的步数为未走过
-                    if(x > 0 && x <= num && y > 0 && y <= num && ARR[x][y] == 0 && STEP[x][y] == -65535){
+                    if(x > 0 && x <= num && y > 0 && y <= num && ARR[x][y] == 0 && STEP[x][y] == Integer.MIN_VALUE){
                         //满足条件后将该点放入队列尾部
                         queue.add(new int[]{x, y});
                         //将该点的前一点的步数加1作为该点的步数
@@ -88,9 +88,9 @@ public class GeZiYiDong {
             show(STEP);
 
             if (isThrough){
-                System.out.println("#" + testCase + " " + STEP[A][B]);
+                System.out.println("#" + testCase + " " + STEP[C][D]);
             }else {
-                System.out.println("#" + testCase + " " + STEP[A][B]);
+                System.out.println("#" + testCase + " " + STEP[C][D]);
             }
 
         }
