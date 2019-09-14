@@ -25,7 +25,7 @@ public class GeZiYiDongJuLi {
     /**
      * 记录每个位置是否已走过
      */
-    static int[][] VALUE;
+    static boolean[][] isUsed;
     private static int num;
     private static int A, B, C, D;
     /**
@@ -43,11 +43,10 @@ public class GeZiYiDongJuLi {
         for (int testCase=0;testCase<N;testCase++) {
             num = sc.nextInt();
             ARR = new int[num + 1][num + 1];
-            VALUE = new int[num + 1][num + 1];
+            isUsed = new boolean[num + 1][num + 1];
             for (int i = 1; i <= num; i++) {
                 for (int j = 1; j <= num; j++) {
                     ARR[i][j] = sc.nextInt();
-                    //给每个点的初始值赋为： -65535
                 }
             }
             A = sc.nextInt();
@@ -55,7 +54,7 @@ public class GeZiYiDongJuLi {
             C = sc.nextInt();
             D = sc.nextInt();
 
-            VALUE[A][B] = 1;
+            isUsed[A][B] = true;
             dsf(A, B, 0);
             System.out.println("最短距离:" + shortPath);
         }
@@ -71,10 +70,10 @@ public class GeZiYiDongJuLi {
         for (int i=0;i<group.length;i++){
             int a = x + group[i][0];
             int b = y + group[i][1];
-            if (a > 0 && a <= num && b > 0 && b <= num && ARR[a][b] == 0 && VALUE[a][b] != 1){
-                VALUE[a][b] = 1;
+            if (a > 0 && a <= num && b > 0 && b <= num && ARR[a][b] == 0 && !isUsed[a][b]){
+                isUsed[a][b] = true;
                 dsf(a, b, step + 1);
-                VALUE[a][b] = 0;
+                isUsed[a][b] = false;
             }
         }
     }
