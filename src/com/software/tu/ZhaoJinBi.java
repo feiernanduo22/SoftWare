@@ -6,6 +6,9 @@ package com.software.tu;
  *
  * dsf
  *
+ * 特别注意：如果每次都向上或向下移动，则不用记录该点是否走过
+ *          定义数组存放该位置上的最大步数，用于判断是否需继续往下走，减少遍历的次数
+ *
  * 测试用例：
  *
  *  * 1
@@ -37,13 +40,13 @@ public class ZhaoJinBi {
     static int[][] value;
     static int maxValue;
     /**
-     * 判断格子是否用过
-     */
-    static boolean[][] isUsed;
-    /**
      * 格子移动策略
      */
     static int[][] group;
+    /**
+     * 记录当前格子存放的最大值
+     */
+    static int[][] allValue;
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -54,7 +57,7 @@ public class ZhaoJinBi {
             C = scanner.nextInt();
             maxValue = Integer.MIN_VALUE;
             value = new int[R+1][C+1];
-            isUsed = new boolean[R+1][C+1];
+            allValue = new int [R+1] [C+1];
             if (S == 1){
                 group = new int[][]{{-1,1},{0,1},{1,1}};
             }else if(S == 2){
@@ -92,10 +95,10 @@ public class ZhaoJinBi {
         for (int i=0;i<group.length;i++){
             int a = x + group[i][0];
             int b = y + group[i][1];
-            if (a > 0 && a <= 3 && b > 0 && b <= 10 && !isUsed[a][b]){
-                isUsed[a][b] = true;
+            //如果当前步数和大于等于该位置最大值，则继续往下循环，且将该位置最大值置为当前的步数和
+            if (a > 0 && a <= 3 && b > 0 && b <= 10 && allValue[a][b] <= step){
+                allValue[a][b] = step;
                 dsf(a, b, step + value[a][b]);
-                isUsed[a][b] = false;
             }
         }
     }
