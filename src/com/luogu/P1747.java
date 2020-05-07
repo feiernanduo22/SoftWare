@@ -10,7 +10,7 @@ import	java.util.Scanner;
  * @data 2020/5/6 20:50
  */
 public class P1747 {
-    static int x1, y1, x2, y2,;
+    static int x1, y1, x2, y2;
     //日子形的坐标及田字形的坐标
     static int[] Gx = {1,2,2,1,-1,-1,-2,-2,2,2,-2,-2};
     static int[] Gy = {2,1,-1,-1,2,-2,1,-1,2,-2,2,-2};
